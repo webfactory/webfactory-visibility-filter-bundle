@@ -1,0 +1,19 @@
+{
+    "name": "webfactory/visibility-filter-bundle",
+    "description": "Symfony Bundle that provides multi-level visibility fields for Doctrine entities",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Webfactory\\VisibilityFilterBundle\\": ""
+        }
+    },
+    "require": {
+        "symfony/security-bundle": "^3.4"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.2.24"
+        }
+    }
+}

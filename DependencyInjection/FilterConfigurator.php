@@ -48,7 +48,7 @@ class FilterConfigurator implements EventSubscriberInterface
         if (!$this->entityManager->getFilters()->has(DoctrineSQLFilter::NAME)) {
             return;
         }
-
+        $this->entityManager->getFilters()->enable(DoctrineSQLFilter::NAME);
         /** @var DoctrineSQLFilter $visibilityFilter */
         $visibilityFilter = $this->entityManager->getFilters()->getFilter(DoctrineSQLFilter::NAME);
         $visibilityFilter->setVisibilityColumnRetriever($this->visibilityColumnRetriever);

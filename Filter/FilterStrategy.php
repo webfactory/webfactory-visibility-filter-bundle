@@ -2,7 +2,7 @@
 
 namespace Webfactory\VisibilityFilterBundle\Filter;
 
-interface FilterRule
+interface FilterStrategy
 {
     public function getFilterSql(string $visibilityFieldAlias): string;
 }

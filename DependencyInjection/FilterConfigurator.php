@@ -7,7 +7,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webfactory\VisibilityFilterBundle\Filter\DoctrineSQLFilter;
-use Webfactory\VisibilityFilterBundle\Filter\FilterRule;
+use Webfactory\VisibilityFilterBundle\Filter\FilterStrategy;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 
 class FilterConfigurator implements EventSubscriberInterface
@@ -23,11 +23,11 @@ class FilterConfigurator implements EventSubscriberInterface
     private $visibilityColumnRetriever;
 
     /**
-     * @var FilterRule
+     * @var FilterStrategy
      */
     private $filterRule;
 
-    public function __construct(EntityManagerInterface $entityManager, VisibilityColumnRetriever $visibilityColumnRetriever, FilterRule $filterRule)
+    public function __construct(EntityManagerInterface $entityManager, VisibilityColumnRetriever $visibilityColumnRetriever, FilterStrategy $filterRule)
     {
         $this->entityManager = $entityManager;
         $this->visibilityColumnRetriever = $visibilityColumnRetriever;
@@ -41,6 +41,10 @@ class FilterConfigurator implements EventSubscriberInterface
 
     public function setUpFilter(GetResponseEvent $event): void
     {
+        if (!$event->isMasterRequest()) {
+            return;
+        }
+
         if (!$this->entityManager->getFilters()->has(DoctrineSQLFilter::NAME)) {
             return;
         }

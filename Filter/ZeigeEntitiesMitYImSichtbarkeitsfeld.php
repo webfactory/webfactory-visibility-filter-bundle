@@ -2,7 +2,7 @@
 
 namespace Webfactory\VisibilityFilterBundle\Filter;
 
-class ZeigeEntitiesMitYImSichtbarkeitsfeld implements FilterRule
+class ZeigeEntitiesMitYImSichtbarkeitsfeld implements FilterStrategy
 {
     public function getFilterSql(string $visibilityFieldAlias): string
     {

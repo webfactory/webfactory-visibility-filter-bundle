@@ -11,7 +11,7 @@ class DoctrineSQLFilter extends SQLFilter
     public const NAME = 'visibility';
 
     /**
-     * @var FilterRule
+     * @var FilterStrategy
      */
     private $filterRule;
 
@@ -20,7 +20,7 @@ class DoctrineSQLFilter extends SQLFilter
      */
     private $visiblityColumnRetriever;
 
-    public function setFilterRule(FilterRule $filterRule): void
+    public function setFilterRule(FilterStrategy $filterRule): void
     {
         $this->filterRule = $filterRule;
     }

@@ -1,0 +1,17 @@
+services:
+    Webfactory\VisibilityFilterBundle\Filter\ZeigeEntitiesMitYImSichtbarkeitsfeld:
+
+    Webfactory\VisibilityFilterBundle\Filter\FilterStrategy:
+        alias: 'Webfactory\VisibilityFilterBundle\Filter\ZeigeEntitiesMitYImSichtbarkeitsfeld'
+
+    Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever:
+        arguments:
+            - '@Doctrine\Common\Annotations\Reader'
+
+    Webfactory\VisibilityFilterBundle\DependencyInjection\FilterConfigurator:
+        arguments:
+            - '@Doctrine\ORM\EntityManagerInterface'
+            - '@Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever'
+            - '@Webfactory\VisibilityFilterBundle\Filter\FilterStrategy'
+        tags:
+            - { name: kernel.event_subscriber }

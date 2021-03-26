@@ -2,7 +2,7 @@
 
 namespace Webfactory\VisibilityFilterBundle\Filter;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use ReflectionProperty;
 use Webfactory\VisibilityFilterBundle\Annotation\VisibilityColumn;
@@ -10,9 +10,14 @@ use Webfactory\VisibilityFilterBundle\Annotation\VisibilityColumn;
 class VisibilityColumnRetriever
 {
     /**
-     * @var AnnotationReader
+     * @var Reader
      */
     private $annotationReader;
+
+    public function __construct(Reader $annotationReader)
+    {
+        $this->annotationReader = $annotationReader;
+    }
 
     public function getVisibilityColumnName(ClassMetadata $classMetadata): ?string
     {

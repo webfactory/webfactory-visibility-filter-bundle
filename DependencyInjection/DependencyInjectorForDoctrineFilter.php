@@ -10,7 +10,11 @@ use Webfactory\VisibilityFilterBundle\Filter\DoctrineSQLFilter;
 use Webfactory\VisibilityFilterBundle\Filter\FilterStrategy;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 
-class FilterConfigurator implements EventSubscriberInterface
+/**
+ * Doctrine-Filter werden tief in Doctrine erzeugt und können daher nicht von der Symfony-DI-Komponente bedient werden.
+ * Deshalb subscribet diese Klasse dem REQUEST-Event, um am Anfang jedes Requests die nötigen Dependencies in den Filter zu injizieren.
+ */
+class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
@@ -18,8 +22,7 @@ class FilterConfigurator implements EventSubscriberInterface
     private $entityManager;
 
     /**
-     * @var VisibilityColumnRetriever
-     */
+     * @var VisibilityColumnRetriever     */
     private $visibilityColumnRetriever;
 
     /**
@@ -48,9 +51,11 @@ class FilterConfigurator implements EventSubscriberInterface
         if (!$this->entityManager->getFilters()->has(DoctrineSQLFilter::NAME)) {
             return;
         }
+
         $this->entityManager->getFilters()->enable(DoctrineSQLFilter::NAME);
         /** @var DoctrineSQLFilter $visibilityFilter */
         $visibilityFilter = $this->entityManager->getFilters()->getFilter(DoctrineSQLFilter::NAME);
+
         $visibilityFilter->setVisibilityColumnRetriever($this->visibilityColumnRetriever);
         $visibilityFilter->setFilterRule($this->filterRule);
     }

@@ -1,8 +1,10 @@
 services:
-    Webfactory\VisibilityFilterBundle\Filter\ZeigeEntitiesMitYImSichtbarkeitsfeld:
-
     Webfactory\VisibilityFilterBundle\Filter\FilterStrategy:
-        alias: 'Webfactory\VisibilityFilterBundle\Filter\ZeigeEntitiesMitYImSichtbarkeitsfeld'
+        alias: 'Webfactory\VisibilityFilterBundle\Filter\HatBestimmtenWertImSichtbarkeitsfeld'
+
+    Webfactory\VisibilityFilterBundle\Filter\HatBestimmtenWertImSichtbarkeitsfeld:
+        arguments:
+            - 'y'
 
     Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever:
         arguments:

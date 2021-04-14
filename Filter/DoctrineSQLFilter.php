@@ -13,16 +13,16 @@ class DoctrineSQLFilter extends SQLFilter
     /**
      * @var FilterStrategy
      */
-    private $filterRule;
+    private $filterStrategy;
 
     /**
      * @var VisibilityColumnRetriever
      */
     private $visiblityColumnRetriever;
 
-    public function setFilterRule(FilterStrategy $filterRule): void
+    public function setFilterStrategy(FilterStrategy $filterStrategy): void
     {
-        $this->filterRule = $filterRule;
+        $this->filterStrategy = $filterStrategy;
     }
 
     public function setVisibilityColumnRetriever(VisibilityColumnRetriever $visibilityColumnRetriever)
@@ -40,15 +40,15 @@ class DoctrineSQLFilter extends SQLFilter
             return ''; // Entity doesn't have visibility information
         }
 
-        return $this->filterRule->getFilterSql($targetTableAlias.'.'.$visibilityColumn);
+        return $this->filterStrategy->getFilterSql($targetTableAlias.'.'.$visibilityColumn);
     }
 
     private function assertSetUpCorrectly(): void
     {
-        if ($this->filterRule !== null && $this->visiblityColumnRetriever !== null) {
+        if ($this->filterStrategy !== null && $this->visiblityColumnRetriever !== null) {
             return;
         }
 
-        throw new RuntimeException('Filter not set up correctly: You need to inject a FilterRule and a VisibilityColumnRetriever via setter before using the filter.' );
+        throw new RuntimeException('Filter not set up correctly: You need to inject a '.FilterStrategy::class.' and a '.VisibilityColumnRetriever::class.' via setter before using the filter.' );
     }
 }

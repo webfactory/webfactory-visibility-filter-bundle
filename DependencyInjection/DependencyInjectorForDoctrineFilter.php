@@ -28,13 +28,13 @@ class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
     /**
      * @var FilterStrategy
      */
-    private $filterRule;
+    private $filterStrategy;
 
-    public function __construct(EntityManagerInterface $entityManager, VisibilityColumnRetriever $visibilityColumnRetriever, FilterStrategy $filterRule)
+    public function __construct(EntityManagerInterface $entityManager, VisibilityColumnRetriever $visibilityColumnRetriever, FilterStrategy $filterStrategy)
     {
         $this->entityManager = $entityManager;
         $this->visibilityColumnRetriever = $visibilityColumnRetriever;
-        $this->filterRule = $filterRule;
+        $this->filterStrategy = $filterStrategy;
     }
 
     public static function getSubscribedEvents()
@@ -57,6 +57,6 @@ class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
         $visibilityFilter = $this->entityManager->getFilters()->getFilter(DoctrineSQLFilter::NAME);
 
         $visibilityFilter->setVisibilityColumnRetriever($this->visibilityColumnRetriever);
-        $visibilityFilter->setFilterRule($this->filterRule);
+        $visibilityFilter->setFilterStrategy($this->filterStrategy);
     }
 }

@@ -51,13 +51,15 @@ final class DependencyInjectorForStrategyConsideringSQLFilter implements EventSu
             return; // filter only needs to be set up once (in the master request), as all sub request share the filter instance with the master request
         }
 
-        if (!$this->entityManager->getFilters()->has(StrategyConsideringSQLFilter::NAME)) {
+        $filterCollection = $this->entityManager->getFilters();
+
+        if (!$filterCollection->has(StrategyConsideringSQLFilter::NAME)) {
             throw new RuntimeException('VisibilityFilterBundle is in use, but not set up correctly: Please register '.StrategyConsideringSQLFilter::class.' as Doctrine filter with the name "'.StrategyConsideringSQLFilter::NAME.'".');
         }
 
-        $this->entityManager->getFilters()->enable(StrategyConsideringSQLFilter::NAME);
+        $filterCollection->enable(StrategyConsideringSQLFilter::NAME);
         /** @var StrategyConsideringSQLFilter $visibilityFilter */
-        $visibilityFilter = $this->entityManager->getFilters()->getFilter(StrategyConsideringSQLFilter::NAME);
+        $visibilityFilter = $filterCollection->getFilter(StrategyConsideringSQLFilter::NAME);
 
         $visibilityFilter->setVisibilityColumnRetriever($this->visibilityColumnRetriever);
         $visibilityFilter->setFilterStrategy($this->filterStrategy);

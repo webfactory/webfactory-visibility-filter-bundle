@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactory\VisibilityFilterBundle\Tests\Fixtures;
+namespace Webfactory\VisibilityFilterBundle\Tests\Fixtures\Kernel;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;

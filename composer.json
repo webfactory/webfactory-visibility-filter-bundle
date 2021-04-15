@@ -4,10 +4,11 @@
     "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "Webfactory\\VisibilityFilterBundle\\": ""
+            "Webfactory\\VisibilityFilterBundle\\": "src"
         }
     },
     "require": {
+        "php": "^7.2",
         "doctrine/annotations": "^1.12",
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/orm": "^2.7.2",

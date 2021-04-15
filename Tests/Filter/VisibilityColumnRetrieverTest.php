@@ -6,11 +6,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\ClassMetadataFactory;
 use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithFaultyVisibilityColumn;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithNoVisibilityColumn;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithProperVisibilityColumn;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\TestKernel;
-use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 
 class VisibilityColumnRetrieverTest extends KernelTestCase
 {

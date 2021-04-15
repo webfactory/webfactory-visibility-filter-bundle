@@ -36,7 +36,7 @@ class DoctrineSQLFilter extends SQLFilter
 
         $visibilityColumn = $this->visiblityColumnRetriever->getVisibilityColumnName($targetEntity);
 
-        if ($visibilityColumn === null) {
+        if (null === $visibilityColumn) {
             return ''; // Entity doesn't have visibility information
         }
 
@@ -45,10 +45,10 @@ class DoctrineSQLFilter extends SQLFilter
 
     private function assertSetUpCorrectly(): void
     {
-        if ($this->filterStrategy !== null && $this->visiblityColumnRetriever !== null) {
+        if (null !== $this->filterStrategy && null !== $this->visiblityColumnRetriever) {
             return;
         }
 
-        throw new RuntimeException('Filter not set up correctly: You need to inject a '.FilterStrategy::class.' and a '.VisibilityColumnRetriever::class.' via setter before using the filter.' );
+        throw new RuntimeException('Filter not set up correctly: You need to inject a '.FilterStrategy::class.' and a '.VisibilityColumnRetriever::class.' via setter before using the filter.');
     }
 }

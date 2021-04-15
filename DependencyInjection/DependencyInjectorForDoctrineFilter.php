@@ -14,7 +14,6 @@ use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
  * Doctrine-Filter get created deep inside Doctrine and therefore can't be served by the Symfony DI component.
  * In order to inject dependencies, this class is subscribed to the REQUEST event, in order to inject the dependencies
  * at the beginning of each request.
- *
  */
 class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
 {

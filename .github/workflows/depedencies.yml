@@ -37,3 +37,5 @@ jobs:
             composer show
       -   name: ComposerRequireChecker
           uses: docker://webfactory/composer-require-checker:2.1.0
+          with:
+            args: '--ignore-parse-errors'

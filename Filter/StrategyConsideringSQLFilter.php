@@ -5,8 +5,9 @@ namespace Webfactory\VisibilityFilterBundle\Filter;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 use RuntimeException;
+use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
 
-final class DoctrineSQLFilter extends SQLFilter
+final class StrategyConsideringSQLFilter extends SQLFilter
 {
     public const NAME = 'visibility';
 

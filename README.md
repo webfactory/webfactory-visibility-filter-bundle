@@ -31,10 +31,10 @@ The filter class needs to be registered manually, as Symfony bundles cannot do t
 doctrine:
     orm:
         filters:
-            visibility: Webfactory\VisibilityFilterBundle\Filter\DoctrineSQLFilter
+            visibility: Webfactory\VisibilityFilterBundle\Filter\StrategyConsideringSQLFilter
 ```
 
-Important: The YAML key of the filter needs to be the same as the constant `DoctrineSQLFilter::NAME` (`'visibility'`),
+Important: The YAML key of the filter needs to be the same as the constant `StrategyConsideringSQLFilter::NAME` (`'visibility'`),
 otherwise the filter won't be activated on requests.
 
 ## Replacing the filter strategy

@@ -6,8 +6,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Webfactory\VisibilityFilterBundle\Filter\DoctrineSQLFilter;
-use Webfactory\VisibilityFilterBundle\Filter\FilterStrategy;
+use Webfactory\VisibilityFilterBundle\Filter\StrategyConsideringSQLFilter;
+use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 
 /**
@@ -15,7 +15,7 @@ use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
  * In order to inject dependencies, this class is subscribed to the REQUEST event, in order to inject the dependencies
  * at the beginning of each request.
  */
-final class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
+final class DependencyInjectorForStrategyConsideringSQLFilter implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
@@ -50,13 +50,13 @@ final class DependencyInjectorForDoctrineFilter implements EventSubscriberInterf
             return;
         }
 
-        if (!$this->entityManager->getFilters()->has(DoctrineSQLFilter::NAME)) {
+        if (!$this->entityManager->getFilters()->has(StrategyConsideringSQLFilter::NAME)) {
             return;
         }
 
-        $this->entityManager->getFilters()->enable(DoctrineSQLFilter::NAME);
-        /** @var DoctrineSQLFilter $visibilityFilter */
-        $visibilityFilter = $this->entityManager->getFilters()->getFilter(DoctrineSQLFilter::NAME);
+        $this->entityManager->getFilters()->enable(StrategyConsideringSQLFilter::NAME);
+        /** @var StrategyConsideringSQLFilter $visibilityFilter */
+        $visibilityFilter = $this->entityManager->getFilters()->getFilter(StrategyConsideringSQLFilter::NAME);
 
         $visibilityFilter->setVisibilityColumnRetriever($this->visibilityColumnRetriever);
         $visibilityFilter->setFilterStrategy($this->filterStrategy);

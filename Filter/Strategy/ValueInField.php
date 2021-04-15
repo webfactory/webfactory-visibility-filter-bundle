@@ -1,6 +1,8 @@
 <?php
 
-namespace Webfactory\VisibilityFilterBundle\Filter;
+namespace Webfactory\VisibilityFilterBundle\Filter\Strategy;
+
+use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
 
 /**
  * Filters queries so that only entries with a certain value in their visibility field (@see VisibilityColumn) will

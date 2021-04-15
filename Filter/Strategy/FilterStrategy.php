@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactory\VisibilityFilterBundle\Filter;
+namespace Webfactory\VisibilityFilterBundle\Filter\Strategy;
 
 interface FilterStrategy
 {

@@ -24,11 +24,11 @@ class VisibilityColumnRetriever
     {
         $property = $this->getVisibilityProperty($classMetadata);
 
-        if ($property === null) {
+        if (null === $property) {
             return null;
         }
 
-        if (!array_key_exists($property->getName(), $classMetadata->fieldMappings)) {
+        if (!\array_key_exists($property->getName(), $classMetadata->fieldMappings)) {
             throw new RuntimeException('Property '.$property->getName().' of class '.$classMetadata->getName().' configured as Visibility Column is not mapped by Doctrine.');
         }
 

@@ -2,7 +2,8 @@
 
 This bundle provides a Doctrine Filter which handles visibility filtering for Entities transparently for a whole
 application, removing the need to repeatedly phrase the filtering in every repository method of an Entity. Most notably,
-the filtering also applies to Doctrine queries that bypass the repository, like Doctrine Collections for relationships.
+the filtering also applies to Doctrine queries that bypass the repository, like relationships declared in the entity
+mapping.
 
 ## Getting started
 

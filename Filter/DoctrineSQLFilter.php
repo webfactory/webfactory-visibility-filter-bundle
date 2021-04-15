@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 use RuntimeException;
 
-class DoctrineSQLFilter extends SQLFilter
+final class DoctrineSQLFilter extends SQLFilter
 {
     public const NAME = 'visibility';
 

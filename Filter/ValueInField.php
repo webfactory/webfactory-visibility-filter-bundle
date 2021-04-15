@@ -6,7 +6,7 @@ namespace Webfactory\VisibilityFilterBundle\Filter;
  * Filters queries so that only entries with a certain value in their visibility field (@see VisibilityColumn) will
  * be retrieved from the database.
  */
-class ValueInField implements FilterStrategy
+final class ValueInField implements FilterStrategy
 {
     /**
      * @var string

@@ -8,7 +8,7 @@ use ReflectionProperty;
 use RuntimeException;
 use Webfactory\VisibilityFilterBundle\Annotation\VisibilityColumn;
 
-class VisibilityColumnRetriever
+final class VisibilityColumnRetriever
 {
     /**
      * @var Reader

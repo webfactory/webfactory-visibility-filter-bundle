@@ -4,6 +4,6 @@ namespace Webfactory\VisibilityFilterBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class VisibilityFilterBundle extends Bundle
+final class VisibilityFilterBundle extends Bundle
 {
 }

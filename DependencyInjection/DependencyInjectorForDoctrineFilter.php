@@ -15,7 +15,7 @@ use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
  * In order to inject dependencies, this class is subscribed to the REQUEST event, in order to inject the dependencies
  * at the beginning of each request.
  */
-class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
+final class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface

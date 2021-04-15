@@ -15,12 +15,12 @@
     "require": {
         "php": "^7.2",
         "doctrine/annotations": "^1.12",
-        "doctrine/doctrine-bundle": "^2.3",
+        "doctrine/doctrine-bundle": "^1.12.13",
         "doctrine/orm": "^2.7.2",
         "symfony/config": "^4.4",
-        "symfony/dependency-injection": "^4.4",
-        "symfony/event-dispatcher": "^4.4",
-        "symfony/http-kernel": "^4.4"
+        "symfony/dependency-injection": "^3.4",
+        "symfony/event-dispatcher": "^3.4",
+        "symfony/http-kernel": "^3.4"
     },
     "config": {
         "sort-packages": true,

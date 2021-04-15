@@ -3,6 +3,7 @@
 namespace Webfactory\VisibilityFilterBundle\DependencyInjection;
 
 use Doctrine\ORM\EntityManagerInterface;
+use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -47,11 +48,11 @@ final class DependencyInjectorForStrategyConsideringSQLFilter implements EventSu
     public function setUpFilter(RequestEvent $event): void
     {
         if (!$event->isMasterRequest()) {
-            return;
+            return; // filter only needs to be set up once (in the master request), as all sub request share the filter instance with the master request
         }
 
         if (!$this->entityManager->getFilters()->has(StrategyConsideringSQLFilter::NAME)) {
-            return;
+            throw new RuntimeException('VisibilityFilterBundle is in use, but not set up correctly: Please register '.StrategyConsideringSQLFilter::class.' as Doctrine filter with the name "'.StrategyConsideringSQLFilter::NAME.'".');
         }
 
         $this->entityManager->getFilters()->enable(StrategyConsideringSQLFilter::NAME);

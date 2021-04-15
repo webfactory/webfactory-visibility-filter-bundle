@@ -21,13 +21,9 @@ final class StrategyConsideringSQLFilter extends SQLFilter
      */
     private $visiblityColumnRetriever;
 
-    public function setFilterStrategy(FilterStrategy $filterStrategy): void
+    public function injectDependencies(FilterStrategy $filterStrategy, VisibilityColumnRetriever $visibilityColumnRetriever): void
     {
         $this->filterStrategy = $filterStrategy;
-    }
-
-    public function setVisibilityColumnRetriever(VisibilityColumnRetriever $visibilityColumnRetriever)
-    {
         $this->visiblityColumnRetriever = $visibilityColumnRetriever;
     }
 
@@ -50,6 +46,6 @@ final class StrategyConsideringSQLFilter extends SQLFilter
             return;
         }
 
-        throw new RuntimeException('Filter not set up correctly: You need to inject a '.FilterStrategy::class.' and a '.VisibilityColumnRetriever::class.' via setter before using the filter.');
+        throw new RuntimeException('Filter not set up correctly: You need to inject a '.FilterStrategy::class.' and a '.VisibilityColumnRetriever::class.' before using the filter.');
     }
 }

@@ -61,7 +61,6 @@ final class DependencyInjectorForStrategyConsideringSQLFilter implements EventSu
         /** @var StrategyConsideringSQLFilter $visibilityFilter */
         $visibilityFilter = $filterCollection->getFilter(StrategyConsideringSQLFilter::NAME);
 
-        $visibilityFilter->setVisibilityColumnRetriever($this->visibilityColumnRetriever);
-        $visibilityFilter->setFilterStrategy($this->filterStrategy);
+        $visibilityFilter->injectDependencies($this->filterStrategy, $this->visibilityColumnRetriever);
     }
 }

@@ -2,8 +2,6 @@ on: [push]
 name: Tests
 env:
   APP_ENV: test
-  MYSQL_DSN_TEST: mysqli://root:root@localhost/gba_extranet_core__test
-  BEHAT_BASE_URL: http://localhost/
   PHP_VERSION: 7.2
   TEMP: ${{ github.workspace }}/tmp
 

@@ -27,6 +27,9 @@ final class StrategyConsideringSQLFilter extends SQLFilter
         $this->visiblityColumnRetriever = $visibilityColumnRetriever;
     }
 
+    /**
+     * @return string
+     */
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
         $this->assertSetUpCorrectly();

@@ -6,7 +6,6 @@
 
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_CLASS" value="Gba\Bundle\ExtranetBundle\Tests\Fixtures\TestKernel" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=0" />
     </php>
 

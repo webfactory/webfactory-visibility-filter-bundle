@@ -1,6 +1,6 @@
 services:
     Webfactory\VisibilityFilterBundle\Filter\FilterStrategy:
-        alias: 'Webfactory\VisibilityFilterBundle\Filter\HatBestimmtenWertImSichtbarkeitsfeld'
+        alias: 'Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField'
 
     Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField:
         arguments:
@@ -10,7 +10,7 @@ services:
         arguments:
             - '@Doctrine\Common\Annotations\Reader'
 
-    Webfactory\VisibilityFilterBundle\DependencyInjection\DependencyInjectorForDoctrineFilter:
+    Webfactory\VisibilityFilterBundle\DependencyInjection\DependencyInjectorForStrategyConsideringSQLFilter:
         arguments:
             - '@Doctrine\ORM\EntityManagerInterface'
             - '@Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever'

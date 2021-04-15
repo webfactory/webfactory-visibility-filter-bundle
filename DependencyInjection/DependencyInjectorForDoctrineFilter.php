@@ -4,7 +4,7 @@ namespace Webfactory\VisibilityFilterBundle\DependencyInjection;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webfactory\VisibilityFilterBundle\Filter\DoctrineSQLFilter;
 use Webfactory\VisibilityFilterBundle\Filter\FilterStrategy;
@@ -44,7 +44,7 @@ class DependencyInjectorForDoctrineFilter implements EventSubscriberInterface
         return [KernelEvents::REQUEST => 'setUpFilter'];
     }
 
-    public function setUpFilter(GetResponseEvent $event): void
+    public function setUpFilter(RequestEvent $event): void
     {
         if (!$event->isMasterRequest()) {
             return;

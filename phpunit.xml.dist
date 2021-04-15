@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/7.5/phpunit.xsd"
+        bootstrap="vendor/autoload.php" colors="true">
+
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <server name="KERNEL_CLASS" value="Gba\Bundle\ExtranetBundle\Tests\Fixtures\TestKernel" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=0" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Filter for code coverage -->
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory>vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+</phpunit>

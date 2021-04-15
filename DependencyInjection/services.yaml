@@ -2,7 +2,7 @@ services:
     Webfactory\VisibilityFilterBundle\Filter\FilterStrategy:
         alias: 'Webfactory\VisibilityFilterBundle\Filter\HatBestimmtenWertImSichtbarkeitsfeld'
 
-    Webfactory\VisibilityFilterBundle\Filter\HatBestimmtenWertImSichtbarkeitsfeld:
+    Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField:
         arguments:
             - 'y'
 

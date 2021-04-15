@@ -7,6 +7,11 @@
             "Webfactory\\VisibilityFilterBundle\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Webfactory\\VisibilityFilterBundle\\Tests\\": "Tests"
+        }
+    },
     "require": {
         "php": "^7.2",
         "doctrine/annotations": "^1.12",

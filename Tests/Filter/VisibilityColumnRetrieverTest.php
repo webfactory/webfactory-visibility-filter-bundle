@@ -10,7 +10,7 @@ use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithFaultyVisibilityColumn;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithNoVisibilityColumn;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithProperVisibilityColumn;
-use Webfactory\VisibilityFilterBundle\Tests\Fixtures\TestKernel;
+use Webfactory\VisibilityFilterBundle\Tests\Fixtures\Kernel\TestKernel;
 
 class VisibilityColumnRetrieverTest extends KernelTestCase
 {

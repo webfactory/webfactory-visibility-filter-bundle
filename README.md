@@ -1,18 +1,18 @@
-# VisibilityFilterBundle – Sichtbarkeitsfilterung leicht gemacht
+# VisibilityFilterBundle – A centralised approach to Entity visibility
 
-Dieses Bundle stellt einen Doctrine-Filter bereit, der Sichtbarkeitsfilterung transparent für die gesamte Webanwendung auf SQL-Ebene anwendet, ohne
-dass die Sichtbarkeit in den Queries der Repository-Methoden berücksichtigt werden muss. Das gilt insbesondere auch für Collections von Beziehungen
-zwischen Entitäten, die von Doctrine ohne übers Repository zu gehen geladen werden.
+This bundle provides a Doctrine Filter which handles visibility filtering for Entities transparently for a whole
+application, removing the need to repeatedly phrase the filtering in every repository method of an Entity. Most notably,
+the filtering also applies to Doctrine queries that bypass the repository, like Doctrine Collections for relationships.
 
-## Einrichten des Filters im Projekt
+## Getting started
 
-Zuerst muss dieses Bundle als Composer-Abhängigkeit hinzugefügt werden.
+First, you need to declare this bundle as a composer dependency.
 
 ```shell
 composer require webfactory/visibility-filter-bundle
 ```
 
-Anschließend muss das Bundle als Symfony-Bundle registriert werden.
+Next, the bundle needs to be registered to Symfony.
 
 ```php
 # src/bundles.php
@@ -24,8 +24,7 @@ return [
 ];
 ```
 
-Weil Doctrine-Filter Doctrine-Filter sind, kann das Bundle den Filter nicht selbst registrieren; das muss manuell über die Doctrine-Konfiguration des
-Projekts gemacht werden:
+The filter class needs to be registered manually, as Symfony bundles cannot do this by themselves.
 
 ```yaml
 # src/config.yml
@@ -35,9 +34,9 @@ doctrine:
             visibility: Webfactory\VisibilityFilterBundle\Filter\DoctrineSQLFilter
 ```
 
-Wichtig: Der Key des Filters muss dem Wert der Konstante `DoctrineSQLFilter::NAME` ensprechen (`'visibility'`), sonst wird der Filter bei Requests
-nicht aktiviert.
+Important: The YAML key of the filter needs to be the same as the constant `DoctrineSQLFilter::NAME` (`'visibility'`),
+otherwise the filter won't be activated on requests.
 
-## Filter-Strategie ändern
+## Replacing the filter strategy
 
-Überschreibe Service-Alias `Webfactory\VisibilityFilterBundle\Filter\FilterStrategy`
+Overwrite Service-Alias `Webfactory\VisibilityFilterBundle\Filter\FilterStrategy` // TODO

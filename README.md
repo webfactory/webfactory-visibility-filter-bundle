@@ -25,7 +25,7 @@ return [
 ];
 ```
 
-The filter class needs to be registered manually, as Symfony bundles cannot do this by themselves.
+The filter class needs to be registered manually.
 
 ```yaml
 # src/config.yml

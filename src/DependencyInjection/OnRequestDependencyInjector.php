@@ -16,7 +16,7 @@ use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
  * about the DI container. Therefore, this class is subscribed to the REQUEST event in order to inject the
  * dependencies at the beginning of each request.
  */
-final class InitialiserForVisibilityColumnConsideringSQLFilter implements EventSubscriberInterface
+final class OnRequestDependencyInjector implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface

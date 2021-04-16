@@ -10,7 +10,7 @@ services:
         arguments:
             - '@Doctrine\Common\Annotations\Reader'
 
-    Webfactory\VisibilityFilterBundle\DependencyInjection\InitialiserForVisibilityColumnConsideringSQLFilter:
+    Webfactory\VisibilityFilterBundle\DependencyInjection\OnRequestDependencyInjector:
         arguments:
             - '@Doctrine\ORM\EntityManagerInterface'
             - '@Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever'

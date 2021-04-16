@@ -7,7 +7,7 @@ use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Webfactory\VisibilityFilterBundle\Filter\StrategyConsideringSQLFilter;
+use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnConsideringSQLFilter;
 use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
 
@@ -16,7 +16,7 @@ use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
  * about the DI container. Therefore, this class is subscribed to the REQUEST event in order to inject the
  * dependencies at the beginning of each request.
  */
-final class DependencyInjectorForStrategyConsideringSQLFilter implements EventSubscriberInterface
+final class InitialiserForVisibilityColumnConsideringSQLFilter implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
@@ -53,13 +53,13 @@ final class DependencyInjectorForStrategyConsideringSQLFilter implements EventSu
 
         $filterCollection = $this->entityManager->getFilters();
 
-        if (!$filterCollection->has(StrategyConsideringSQLFilter::NAME)) {
-            throw new RuntimeException('VisibilityFilterBundle is in use, but not set up correctly: Please register '.StrategyConsideringSQLFilter::class.' as Doctrine filter with the name "'.StrategyConsideringSQLFilter::NAME.'".');
+        if (!$filterCollection->has(VisibilityColumnConsideringSQLFilter::NAME)) {
+            throw new RuntimeException('VisibilityFilterBundle is in use, but not set up correctly: Please register '.VisibilityColumnConsideringSQLFilter::class.' as Doctrine filter with the name "'.VisibilityColumnConsideringSQLFilter::NAME.'".');
         }
 
-        $filterCollection->enable(StrategyConsideringSQLFilter::NAME);
-        /** @var StrategyConsideringSQLFilter $visibilityFilter */
-        $visibilityFilter = $filterCollection->getFilter(StrategyConsideringSQLFilter::NAME);
+        $filterCollection->enable(VisibilityColumnConsideringSQLFilter::NAME);
+        /** @var VisibilityColumnConsideringSQLFilter $visibilityFilter */
+        $visibilityFilter = $filterCollection->getFilter(VisibilityColumnConsideringSQLFilter::NAME);
 
         $visibilityFilter->injectDependencies($this->filterStrategy, $this->visibilityColumnRetriever);
     }

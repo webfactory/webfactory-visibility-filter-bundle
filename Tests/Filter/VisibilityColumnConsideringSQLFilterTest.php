@@ -25,16 +25,6 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     private $entityManager;
 
-    /**
-     * @var EntityWithProperVisibilityColumn
-     */
-    private $invisibleEntity;
-
-    /**
-     * @var EntityWithProperVisibilityColumn
-     */
-    private $visibleEntity;
-
     protected static function getKernelClass()
     {
         return TestKernel::class;
@@ -53,15 +43,6 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
             $this->entityManager->getClassMetadata(EntityWithManyToManyRelationship::class),
             $this->entityManager->getClassMetadata(EntityWithOneToOneRelationship::class)
         ]);
-
-        // create test entitites
-        $this->invisibleEntity = new EntityWithProperVisibilityColumn(1, 'n');
-        $this->entityManager->persist($this->invisibleEntity);
-
-        $this->visibleEntity = new EntityWithProperVisibilityColumn(2, 'y');
-        $this->entityManager->persist($this->visibleEntity);
-
-        $this->entityManager->flush();
 
         // activate filter by simulating a request
         $eventDispatcher = static::$container->get(EventDispatcherInterface::class);
@@ -87,10 +68,18 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     public function filter_gets_applied_on_findAll_method_of_repository(): void
     {
+        $invisibleEntity = new EntityWithProperVisibilityColumn(1, 'n');
+        $this->entityManager->persist($invisibleEntity);
+
+        $visibleEntity = new EntityWithProperVisibilityColumn(2, 'y');
+        $this->entityManager->persist($visibleEntity);
+
+        $this->entityManager->flush();
+
         $result = $this->entityManager->getRepository(EntityWithProperVisibilityColumn::class)->findAll();
 
         static::assertCount(1, $result);
-        static::assertEquals($this->visibleEntity->id, $result[0]->id);
+        static::assertEquals($visibleEntity->id, $result[0]->id);
     }
 
     /**
@@ -98,11 +87,19 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     public function filter_gets_applied_on_custom_DQL(): void
     {
+        $invisibleEntity = new EntityWithProperVisibilityColumn(1, 'n');
+        $this->entityManager->persist($invisibleEntity);
+
+        $visibleEntity = new EntityWithProperVisibilityColumn(2, 'y');
+        $this->entityManager->persist($visibleEntity);
+
+        $this->entityManager->flush();
+
         $query = $this->entityManager->createQuery('SELECT e FROM '.EntityWithProperVisibilityColumn::class.' e');
         $result = $query->getResult();
 
         static::assertCount(1, $result);
-        static::assertEquals($this->visibleEntity->id, $result[0]->id);
+        static::assertEquals($visibleEntity->id, $result[0]->id);
     }
 
     /**
@@ -110,8 +107,14 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     public function filter_gets_aplied_on_many_to_many_relationship(): void
     {
+        $invisibleEntity = new EntityWithProperVisibilityColumn(1, 'n');
+        $this->entityManager->persist($invisibleEntity);
+
+        $visibleEntity = new EntityWithProperVisibilityColumn(2, 'y');
+        $this->entityManager->persist($visibleEntity);
+
         $entityWithRelationship = new EntityWithManyToManyRelationship(1);
-        $entityWithRelationship->relationship = [$this->visibleEntity, $this->invisibleEntity];
+        $entityWithRelationship->relationship = [$visibleEntity, $invisibleEntity];
         $this->entityManager->persist($entityWithRelationship);
         $this->entityManager->flush();
         $this->clearUnitOfWork();
@@ -120,7 +123,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
         $result = $this->entityManager->getRepository(EntityWithManyToManyRelationship::class)->find(1);
 
         static::assertCount(1, $result->relationship);
-        static::assertEquals($this->visibleEntity->id, $result->relationship[0]->id);
+        static::assertEquals($visibleEntity->id, $result->relationship[0]->id);
     }
 
     /**
@@ -128,12 +131,18 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     public function filter_gets_aplied_on_one_to_one_relationship(): void
     {
+        $invisibleEntity = new EntityWithProperVisibilityColumn(1, 'n');
+        $this->entityManager->persist($invisibleEntity);
+
+        $visibleEntity = new EntityWithProperVisibilityColumn(2, 'y');
+        $this->entityManager->persist($visibleEntity);
+
         $entityWithRelationshipToVisible = new EntityWithOneToOneRelationship(1);
-        $entityWithRelationshipToVisible->relationship = $this->visibleEntity;
+        $entityWithRelationshipToVisible->relationship = $visibleEntity;
         $this->entityManager->persist($entityWithRelationshipToVisible);
 
         $entityWithRelationshipToInvisible = new EntityWithOneToOneRelationship(2);
-        $entityWithRelationshipToInvisible->relationship = $this->invisibleEntity;
+        $entityWithRelationshipToInvisible->relationship = $invisibleEntity;
         $this->entityManager->persist($entityWithRelationshipToInvisible);
 
         $this->entityManager->flush();

@@ -9,7 +9,7 @@ interface FilterStrategy
 {
     /**
      * @param string $visibilityFieldAlias SQL alias for the visibility field of the requested entity
-     * @return string A string of SQL that will be appended as a WHERE clause to any query requesting an entity with a visibility field
+     * @return string A string of SQL that will be appended to the WHERE clause to any query requesting an entity with a visibility field
      */
     public function getFilterSql(string $visibilityFieldAlias): string;
 }

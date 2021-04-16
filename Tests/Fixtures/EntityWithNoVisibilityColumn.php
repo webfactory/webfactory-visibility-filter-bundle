@@ -16,5 +16,5 @@ class EntityWithNoVisibilityColumn
      *
      * @var int
      */
-    private $id;
+    public $id;
 }

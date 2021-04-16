@@ -17,7 +17,7 @@ class EntityWithProperVisibilityColumn
      *
      * @var string
      */
-    private $visibilityColumn;
+    public $visibilityColumn;
 
     /**
      * @ORM\Id()
@@ -25,5 +25,11 @@ class EntityWithProperVisibilityColumn
      *
      * @var int
      */
-    private $id;
+    public $id;
+
+    public function __construct(int $id, string $visibilityColumn)
+    {
+        $this->visibilityColumn = $visibilityColumn;
+        $this->id = $id;
+    }
 }

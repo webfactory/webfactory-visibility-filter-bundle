@@ -17,7 +17,7 @@ class EntityWithFaultyVisibilityColumn
      *
      * @var string
      */
-    private $visibilityColumn;
+    public $visibilityColumn;
 
     /**
      * @ORM\Id()
@@ -25,5 +25,5 @@ class EntityWithFaultyVisibilityColumn
      *
      * @var int
      */
-    private $id;
+    public $id;
 }

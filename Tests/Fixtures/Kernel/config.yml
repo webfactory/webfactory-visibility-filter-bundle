@@ -8,8 +8,11 @@ doctrine:
                 type: annotation
                 dir: '%kernel.project_dir%'
                 prefix: 'Webfactory\VisibilityFilterBundle\Tests\Fixtures'
+        auto_generate_proxy_classes: true
     dbal:
-        url: ''
+        logging: false
+        driver: pdo_sqlite
+        memory: true
 framework:
     test:
     validation:

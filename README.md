@@ -75,4 +75,10 @@ Please note that configuring more than one field as visibility column will throw
 
 ## Replacing the filter strategy
 
-Overwrite Service-Alias `Webfactory\VisibilityFilterBundle\Filter\FilterStrategy` // TODO
+By default, the library makes you application only query entities from the database that have the string `y` in their
+visibility column. You can change this behaviour by overwriting the service
+`Webfactory\VisibilityFilterBundle\Filter\FilterStrategy` with your own implementation.
+
+Your implementation needs to implement the `FilterStrategy` interface. If you only want to change the `y` string to
+something different, you can use the `Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField` implementation
+and provide it with a different `visibleValue` in its constructor.

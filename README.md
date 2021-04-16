@@ -13,7 +13,7 @@ First, you need to declare this bundle as a composer dependency.
 composer require webfactory/visibility-filter-bundle
 ```
 
-Next, the bundle needs to be registered to Symfony. Depending on your Symfony version, this might look like this:
+Next, the bundle needs to be registered to Symfony. Depending on your Symfony version, this might look like that:
 
 ```php
 # src/bundles.php
@@ -35,8 +35,7 @@ doctrine:
             visibility: Webfactory\VisibilityFilterBundle\Filter\StrategyConsideringSQLFilter
 ```
 
-Important: The YAML key of the filter needs to be the same as the constant `StrategyConsideringSQLFilter::NAME` (`'visibility'`),
-otherwise the filter won't be activated on requests.
+Important: The YAML key of the filter needs to `visibility`, otherwise the filter won't be activated on requests.
 
 ## Configuring the visibility column
 

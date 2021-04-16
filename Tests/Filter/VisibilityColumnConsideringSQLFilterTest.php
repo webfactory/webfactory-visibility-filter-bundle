@@ -83,28 +83,14 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
     }
 
     /**
-     * @param int $needle
-     * @param array|Collection $collection
-     */
-    private static function assertIsFiltered($collection): void
-    {
-        foreach ($collection as $entry) {
-            if ($entry === null) {
-                continue;
-            }
-            self::assertEquals('y', $entry->visibilityColumn); // using the default filter strategy, all visible entries have 'y' in their visibility column
-        }
-    }
-
-    /**
      * @test
      */
     public function filter_gets_applied_on_findAll_method_of_repository(): void
     {
         $result = $this->entityManager->getRepository(EntityWithProperVisibilityColumn::class)->findAll();
 
-        static::assertNotEmpty($result);
-        static::assertIsFiltered($result);
+        static::assertCount(1, $result);
+        static::assertEquals($this->visibleEntity->id, $result[0]->id);
     }
 
     /**
@@ -115,8 +101,8 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
         $query = $this->entityManager->createQuery('SELECT e FROM '.EntityWithProperVisibilityColumn::class.' e');
         $result = $query->getResult();
 
-        static::assertNotEmpty($result);
-        static::assertIsFiltered($result);
+        static::assertCount(1, $result);
+        static::assertEquals($this->visibleEntity->id, $result[0]->id);
     }
 
     /**
@@ -133,8 +119,8 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
         /** @var EntityWithManyToManyRelationship $result */
         $result = $this->entityManager->getRepository(EntityWithManyToManyRelationship::class)->find(1);
 
-        static::assertNotEmpty($result->relationship);
-        static::assertIsFiltered($result->relationship);
+        static::assertCount(1, $result->relationship);
+        static::assertEquals($this->visibleEntity->id, $result->relationship[0]->id);
     }
 
     /**
@@ -155,8 +141,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
 
         $result = $this->entityManager->getRepository(EntityWithOneToOneRelationship::class)->findAll();
 
-        static::assertNotEmpty($result);
-        static::assertCount(2, $result); // both entities should be loaded - only should one have no related entity
-        static::assertIsFiltered([$result[0]->relationship, $result[1]->relationship]);
+        static::assertCount(2, $result);
+        static::assertNull($result[1]->relationship);
     }
 }

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class EntityWithOneToOneRelationship
 {
     /**
-     * Using many to many relationship to avoid the need of an inversed column in the target entity
+     * Using many to many relationship to avoid the need of an inversed column in the target entity.
      *
      * @ORM\OneToOne(targetEntity="EntityWithProperVisibilityColumn", fetch="EAGER")
      *

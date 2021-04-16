@@ -37,12 +37,18 @@ final class VisibilityColumnRetriever
 
     private function getVisibilityProperty(ClassMetadata $classMetadata): ?ReflectionProperty
     {
+        $visibilityProperty = null;
+
         foreach ($classMetadata->getReflectionClass()->getProperties() as $property) {
-            if ($this->annotationReader->getPropertyAnnotation($property, VisibilityColumn::class)) {
-                return $property;
+            if ($this->annotationReader->getPropertyAnnotation($property, VisibilityColumn::class) !== null) {
+                if ($visibilityProperty !== null) {
+                    throw new RuntimeException('More than 1 visibility column configured for '.$classMetadata->getName().'. You must only configure 1 visibility column per entity.');
+                }
+
+                $visibilityProperty = $property;
             }
         }
 
-        return null;
+        return $visibilityProperty;
     }
 }

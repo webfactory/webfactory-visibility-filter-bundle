@@ -63,8 +63,8 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
         $masterRequestEvent = new GetResponseEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
         $this->eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
 
-        /** @var VisibilityColumnConsideringSQLFilterMock $filter */
-        $filter = $this->entityManager->getFilters()->getFilter(VisibilityColumnConsideringSQLFilter::NAME);
-        static::assertTrue($filter->haveDependenciesBeenInjected());
+        /** @var VisibilityColumnConsideringSQLFilterMock $filterMock */
+        $filterMock = $this->entityManager->getFilters()->getFilter(VisibilityColumnConsideringSQLFilter::NAME);
+        static::assertTrue($filterMock->haveDependenciesBeenInjected());
     }
 }

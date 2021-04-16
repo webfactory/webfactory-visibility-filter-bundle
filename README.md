@@ -13,7 +13,7 @@ First, you need to declare this bundle as a composer dependency.
 composer require webfactory/visibility-filter-bundle
 ```
 
-Next, the bundle needs to be registered to Symfony.
+Next, the bundle needs to be registered to Symfony. Depending on your Symfony version, this might look like this:
 
 ```php
 # src/bundles.php

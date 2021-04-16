@@ -32,7 +32,7 @@ The filter class needs to be registered manually.
 doctrine:
     orm:
         filters:
-            visibility: Webfactory\VisibilityFilterBundle\Filter\StrategyConsideringSQLFilter
+            visibility: Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnConsideringSQLFilter
 ```
 
 Important: The YAML key of the filter needs to `visibility`, otherwise the filter won't be activated on requests.

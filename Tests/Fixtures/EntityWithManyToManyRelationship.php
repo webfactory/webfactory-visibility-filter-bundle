@@ -16,7 +16,7 @@ class EntityWithManyToManyRelationship
      * @ORM\ManyToMany(targetEntity="EntityWithProperVisibilityColumn")
      * @ORM\JoinTable(name="jointable",
      *      joinColumns={@ORM\JoinColumn(name="this", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="that", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="that", referencedColumnName="id")}
      *      )
      *
      * @var Collection&array

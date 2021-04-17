@@ -12,7 +12,7 @@ class EntityWithOneToOneRelationship
     /**
      * Using many to many relationship to avoid the need of an inversed column in the target entity.
      *
-     * @ORM\OneToOne(targetEntity="EntityWithProperVisibilityColumn", fetch="EAGER")
+     * @ORM\OneToOne(targetEntity="EntityWithProperVisibilityColumn")
      *
      * @var EntityWithProperVisibilityColumn
      */

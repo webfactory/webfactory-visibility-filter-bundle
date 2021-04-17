@@ -2,9 +2,6 @@
 
 namespace Webfactory\VisibilityFilterBundle\Tests\Filter;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\FetchMode;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -13,9 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithManyToManyRelationship;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithOneToOneRelationship;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithProperVisibilityColumn;
-use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithManyToManyRelationship;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\Kernel\TestKernel;
 
 class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
@@ -41,7 +38,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
         $schemaTool->createSchema([
             $this->entityManager->getClassMetadata(EntityWithProperVisibilityColumn::class),
             $this->entityManager->getClassMetadata(EntityWithManyToManyRelationship::class),
-            $this->entityManager->getClassMetadata(EntityWithOneToOneRelationship::class)
+            $this->entityManager->getClassMetadata(EntityWithOneToOneRelationship::class),
         ]);
 
         // activate filter by simulating a request

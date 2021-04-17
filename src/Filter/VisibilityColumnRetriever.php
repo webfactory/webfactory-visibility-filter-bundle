@@ -40,8 +40,8 @@ final class VisibilityColumnRetriever
         $visibilityProperty = null;
 
         foreach ($classMetadata->getReflectionClass()->getProperties() as $property) {
-            if ($this->annotationReader->getPropertyAnnotation($property, VisibilityColumn::class) !== null) {
-                if ($visibilityProperty !== null) {
+            if (null !== $this->annotationReader->getPropertyAnnotation($property, VisibilityColumn::class)) {
+                if (null !== $visibilityProperty) {
                     throw new RuntimeException('More than 1 visibility column configured for '.$classMetadata->getName().'. You must only configure 1 visibility column per entity.');
                 }
 

@@ -9,7 +9,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Webfactory\\VisibilityFilterBundle\\Tests\\": "Tests"
+            "Webfactory\\VisibilityFilterBundle\\Tests\\": "tests"
         }
     },
     "require": {

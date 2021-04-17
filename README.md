@@ -49,12 +49,13 @@ All you need to configure on your entity is *which* of its fields will be the on
 You can do that by Adding the `VisibilityColumn()` annotation to that field.
 
 ```php
-/**
- * @ORM\Entity()
- */
+
 use Doctrine\ORM\Mapping as ORM;
 use Webfactory\VisibilityFilterBundle\Annotation\VisibilityColumn;
 
+/**
+ * @ORM\Entity()
+ */
 class EntityWithVisibilityColumn
 {
     // ...

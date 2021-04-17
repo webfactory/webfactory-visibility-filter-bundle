@@ -1,4 +1,4 @@
-# VisibilityFilterBundle – A centralised approach to Entity visibility
+# VisibilityFilterBundle – A centralised approach to visibility of Doctrine Entities
 
 This bundle provides a Doctrine Filter which handles visibility filtering for Entities transparently for a whole
 application, removing the need to repeatedly phrase the filtering in every repository method of an Entity. Most notably,

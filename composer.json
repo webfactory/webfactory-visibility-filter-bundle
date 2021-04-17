@@ -1,7 +1,7 @@
 {
     "name": "webfactory/visibility-filter-bundle",
     "description": "Symfony Bundle that filters out invisible Doctrine entities in a centralised way",
-    "license": "proprietary",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Webfactory\\VisibilityFilterBundle\\": "src"

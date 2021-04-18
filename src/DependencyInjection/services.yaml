@@ -1,0 +1,19 @@
+services:
+    Webfactory\VisibilityFilterBundle\Filter\FilterStrategy:
+        alias: 'Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField'
+
+    Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField:
+        arguments:
+            - 'y'
+
+    Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever:
+        arguments:
+            - '@Doctrine\Common\Annotations\Reader'
+
+    Webfactory\VisibilityFilterBundle\DependencyInjection\OnRequestDependencyInjector:
+        arguments:
+            - '@Doctrine\ORM\EntityManagerInterface'
+            - '@Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever'
+            - '@Webfactory\VisibilityFilterBundle\Filter\FilterStrategy'
+        tags:
+            - { name: kernel.event_subscriber }

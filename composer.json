@@ -1,0 +1,37 @@
+{
+    "name": "webfactory/visibility-filter-bundle",
+    "description": "Symfony Bundle that filters out invisible Doctrine entities in a centralised way",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Webfactory\\VisibilityFilterBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webfactory\\VisibilityFilterBundle\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "doctrine/annotations": "^1.12",
+        "doctrine/doctrine-bundle": "^1.12.13",
+        "doctrine/orm": "^2.7.2",
+        "symfony/config": "^4.4",
+        "symfony/dependency-injection": "^3.4|^4.4",
+        "symfony/event-dispatcher": "^3.4|^4.4",
+        "symfony/http-kernel": "^3.4|^4.4"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.2.24"
+        }
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^6.5",
+        "phpunit/phpunit": "^8.5",
+        "symfony/framework-bundle": "^4.4",
+        "symfony/yaml": "^3.4"
+    }
+}

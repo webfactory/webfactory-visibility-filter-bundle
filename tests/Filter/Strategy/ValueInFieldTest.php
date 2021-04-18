@@ -10,7 +10,7 @@ class ValueInFieldTest extends TestCase
     /**
      * @test
      */
-    public function givesCorrectSQLClauseForString(): void
+    public function gives_correct_SQL_clause_for_string(): void
     {
         $valueInField = new ValueInField('y');
 
@@ -22,7 +22,7 @@ class ValueInFieldTest extends TestCase
     /**
      * @test
      */
-    public function givesCorrectSQLClauseForInt(): void
+    public function gives_correct_SQL_clause_for_int(): void
     {
         $valueInField = new ValueInField(2);
 
@@ -34,7 +34,7 @@ class ValueInFieldTest extends TestCase
     /**
      * @test
      */
-    public function givesCorrectSQLClauseForFalse(): void
+    public function gives_correct_SQL_clause_for_false(): void
     {
         $valueInField = new ValueInField(false);
 
@@ -46,7 +46,7 @@ class ValueInFieldTest extends TestCase
     /**
      * @test
      */
-    public function givesCorrectSQLClauseForTrue(): void
+    public function gives_correct_SQL_clause_for_true(): void
     {
         $valueInField = new ValueInField(true);
 

@@ -8,9 +8,6 @@ jobs:
     name: Check missing composer requirements
     runs-on: ubuntu-18.04
     steps:
-      -   uses: webfactory/ssh-agent@master
-          with:
-            ssh-private-key: ${{ secrets.ORG_SSH_PRIVATE_KEY }}
       -   uses: actions/checkout@v2
       -   name: Configure Composer
           run: |

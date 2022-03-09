@@ -62,5 +62,6 @@ final class OnRequestDependencyInjector implements EventSubscriberInterface
         $visibilityFilter = $filterCollection->getFilter(VisibilityColumnConsideringSQLFilter::NAME);
 
         $visibilityFilter->injectDependencies($this->filterStrategy, $this->visibilityColumnRetriever);
+        $visibilityFilter->setParameter('visibility', $this->filterStrategy->getFilterSql(''));
     }
 }

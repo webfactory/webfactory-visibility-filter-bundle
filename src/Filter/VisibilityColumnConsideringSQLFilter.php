@@ -40,7 +40,7 @@ final class VisibilityColumnConsideringSQLFilter extends SQLFilter
             return ''; // Entity doesn't have visibility information
         }
 
-        return $this->filterStrategy->getFilterSql($targetTableAlias.'.'.$visibilityColumn);
+        return $this->filterStrategy->getFilterSql($targetTableAlias.'.'.$visibilityColumn, new SQLFilterAsParameterCollection($this));
     }
 
     private function assertSetUpCorrectly(): void

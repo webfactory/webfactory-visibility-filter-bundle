@@ -3,6 +3,7 @@ services:
         alias: 'Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField'
 
     Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField:
+        public: true
         arguments:
             - 'y'
 

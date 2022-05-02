@@ -3,8 +3,6 @@
 namespace Webfactory\VisibilityFilterBundle\Filter\Strategy;
 
 use Webfactory\VisibilityFilterBundle\Filter\ParameterCollection;
-use function is_bool;
-use function is_string;
 
 /**
  * Filters queries so that only entries with a certain value in their visibility field (@see VisibilityColumn) will
@@ -40,11 +38,11 @@ final class ValueInField implements FilterStrategy
      */
     private function getSqlLiteral($value): string
     {
-        if (is_string($value)) {
+        if (\is_string($value)) {
             return '"'.$value.'"';
         }
 
-        if (is_bool($value)) {
+        if (\is_bool($value)) {
             return $value ? '1' : '0';
         }
 

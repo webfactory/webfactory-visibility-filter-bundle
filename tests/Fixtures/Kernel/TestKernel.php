@@ -7,8 +7,6 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
-use Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField;
 use Webfactory\VisibilityFilterBundle\VisibilityFilterBundle;
 
 class TestKernel extends Kernel

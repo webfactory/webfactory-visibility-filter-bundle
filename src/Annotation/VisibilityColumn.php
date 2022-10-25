@@ -12,6 +12,7 @@ use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
  * For more information on visibility filtering, consider reading the README.md file of this bundle.
  *
  * @Annotation
+ *
  * @Target("PROPERTY")
  */
 final class VisibilityColumn

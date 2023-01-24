@@ -5,7 +5,7 @@ namespace Webfactory\VisibilityFilterBundle\DependencyInjection;
 use Doctrine\ORM\EntityManagerInterface;
 use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnConsideringSQLFilter;
@@ -45,7 +45,7 @@ final class OnRequestDependencyInjector implements EventSubscriberInterface
         return [KernelEvents::REQUEST => 'setUpFilter'];
     }
 
-    public function setUpFilter(GetResponseEvent $event): void
+    public function setUpFilter(RequestEvent $event): void
     {
         if (!$event->isMasterRequest()) {
             return; // filter only needs to be set up once (in the master request), as all sub request share the filter instance with the master request

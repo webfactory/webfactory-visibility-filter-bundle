@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnConsideringSQLFilter;
@@ -46,8 +47,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
      */
     public function enables_filter_on_request(): void
     {
-        // we use the deprecated GetResponseEvent in order to support Symfony 3.4 - this can be changed to RequestEvent when removing 3.4 support
-        $masterRequestEvent = new GetResponseEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
         $this->eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
 
         static::assertTrue($this->entityManager->getFilters()->isEnabled(VisibilityColumnConsideringSQLFilter::NAME));
@@ -60,7 +60,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
     {
         $this->entityManager->getConfiguration()->addFilter(VisibilityColumnConsideringSQLFilter::NAME, VisibilityColumnConsideringSQLFilterMock::class);
 
-        $masterRequestEvent = new GetResponseEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
         $this->eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
 
         /** @var VisibilityColumnConsideringSQLFilterMock $filterMock */

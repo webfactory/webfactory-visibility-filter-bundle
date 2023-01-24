@@ -18,9 +18,9 @@
         "doctrine/doctrine-bundle": "^1.12.13|^2.0",
         "doctrine/orm": "^2.7.2",
         "symfony/config": "^4.4|^5.4",
-        "symfony/dependency-injection": "^3.4|^4.4|^5.4",
-        "symfony/event-dispatcher": "^3.4|^4.4|^5.4",
-        "symfony/http-kernel": "^3.4|^4.4|^5.4"
+        "symfony/dependency-injection": "^4.4|^5.4",
+        "symfony/event-dispatcher": "^4.4|^5.4",
+        "symfony/http-kernel": "^4.4|^5.4"
     },
     "config": {
         "sort-packages": true
@@ -29,6 +29,6 @@
         "dama/doctrine-test-bundle": "^6.5",
         "phpunit/phpunit": "^8.5",
         "symfony/framework-bundle": "^4.4|^5.4",
-        "symfony/yaml": "^3.4|^4.4|^5.4"
+        "symfony/yaml": "^4.4|^5.4"
     }
 }

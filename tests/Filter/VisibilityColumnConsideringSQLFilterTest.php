@@ -7,7 +7,7 @@ use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\EntityWithManyToManyRelationship;
@@ -43,7 +43,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
 
         // activate filter by simulating a request
         $eventDispatcher = static::$container->get(EventDispatcherInterface::class);
-        $masterRequestEvent = new GetResponseEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
         $eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
     }
 

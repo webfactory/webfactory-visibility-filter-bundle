@@ -17,21 +17,18 @@
         "doctrine/annotations": "^1.12",
         "doctrine/doctrine-bundle": "^1.12.13|^2.0",
         "doctrine/orm": "^2.7.2",
-        "symfony/config": "^4.4",
-        "symfony/dependency-injection": "^3.4|^4.4",
-        "symfony/event-dispatcher": "^3.4|^4.4",
-        "symfony/http-kernel": "^3.4|^4.4"
+        "symfony/config": "^4.4|^5.4",
+        "symfony/dependency-injection": "^3.4|^4.4|^5.4",
+        "symfony/event-dispatcher": "^3.4|^4.4|^5.4",
+        "symfony/http-kernel": "^3.4|^4.4|^5.4"
     },
     "config": {
-        "sort-packages": true,
-        "platform": {
-            "php": "7.2.24"
-        }
+        "sort-packages": true
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^6.5",
         "phpunit/phpunit": "^8.5",
-        "symfony/framework-bundle": "^4.4",
-        "symfony/yaml": "^3.4"
+        "symfony/framework-bundle": "^4.4|^5.4",
+        "symfony/yaml": "^3.4|^4.4|^5.4"
     }
 }

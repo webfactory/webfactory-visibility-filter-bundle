@@ -20,6 +20,7 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ env.PHP_VERSION }}
+            coverage: none
             tools: composer:v2
             ini-values: variables_order=EGPCS
             # Falls spezielle Extensions installiert werden müssen:
@@ -50,6 +51,7 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ env.PHP_8_VERSION }}
+            coverage: none
             tools: composer:v2
             ini-values: variables_order=EGPCS
             # Falls spezielle Extensions installiert werden müssen:

@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -32,7 +31,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
         return TestKernel::class;
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         static::bootKernel();

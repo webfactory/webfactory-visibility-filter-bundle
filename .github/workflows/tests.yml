@@ -9,9 +9,9 @@ env:
 jobs:
   PHPUnit:
     name: PHPUnit (PHP 7.2)
-    runs-on: ubuntu-20.04
+    runs-un: ubuntu-22.04
     steps:
-      -   uses: actions/checkout@v3
+      -   uses: actions/checkout@v4
       -   name: Configure Composer
           run: |
             mkdir -p ~/.composer/cache
@@ -40,9 +40,9 @@ jobs:
 
   PHPUnit_PHP81:
     name: PHPUnit (PHP 8.2)
-    runs-on: ubuntu-20.04
+    runs-un: ubuntu-22.04
     steps:
-      -   uses: actions/checkout@v3
+      -   uses: actions/checkout@v4
       -   name: Configure Composer
           run: |
             mkdir -p ~/.composer/cache

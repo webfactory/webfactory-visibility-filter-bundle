@@ -9,7 +9,7 @@ env:
 jobs:
   PHPUnit:
     name: PHPUnit (PHP 7.2)
-    runs-un: ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       -   uses: actions/checkout@v4
       -   name: Configure Composer
@@ -40,7 +40,7 @@ jobs:
 
   PHPUnit_PHP81:
     name: PHPUnit (PHP 8.2)
-    runs-un: ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       -   uses: actions/checkout@v4
       -   name: Configure Composer

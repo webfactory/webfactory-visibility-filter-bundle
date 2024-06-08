@@ -7,7 +7,7 @@ env:
 jobs:
   composer-require-checker:
     name: Check missing composer requirements (PHP 7.2)
-    runs-un: ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       -   uses: actions/checkout@v4
       -   name: Configure Composer
@@ -38,7 +38,7 @@ jobs:
   
   composer-require-checker_PHP81:
     name: Check missing composer requirements (PHP 8.1)
-    runs-un: ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       -   uses: actions/checkout@v4
       -   name: Configure Composer

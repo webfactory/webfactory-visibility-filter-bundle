@@ -47,8 +47,8 @@ final class OnRequestDependencyInjector implements EventSubscriberInterface
 
     public function setUpFilter(RequestEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
-            return; // filter only needs to be set up once (in the master request), as all sub request share the filter instance with the master request
+        if (!$event->isMainRequest()) {
+            return; // filter only needs to be set up once (in the main request), as all sub request share the filter instance with the master request
         }
 
         $filterCollection = $this->entityManager->getFilters();

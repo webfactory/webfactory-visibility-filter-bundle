@@ -43,7 +43,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
 
         // activate filter by simulating a request
         $eventDispatcher = static::$container->get(EventDispatcherInterface::class);
-        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MAIN_REQUEST);
         $eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
     }
 

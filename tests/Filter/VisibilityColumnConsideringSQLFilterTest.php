@@ -22,7 +22,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     private $entityManager;
 
-    protected static function getKernelClass()
+    protected static function getKernelClass(): string
     {
         return TestKernel::class;
     }
@@ -31,7 +31,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
     {
         self::bootKernel();
 
-        $this->entityManager = static::$container->get(EntityManagerInterface::class);
+        $this->entityManager = static::getContainer()->get(EntityManagerInterface::class);
 
         // create database schema
         $schemaTool = new SchemaTool($this->entityManager);
@@ -42,8 +42,8 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
         ]);
 
         // activate filter by simulating a request
-        $eventDispatcher = static::$container->get(EventDispatcherInterface::class);
-        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $eventDispatcher = static::getContainer()->get(EventDispatcherInterface::class);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MAIN_REQUEST);
         $eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
     }
 

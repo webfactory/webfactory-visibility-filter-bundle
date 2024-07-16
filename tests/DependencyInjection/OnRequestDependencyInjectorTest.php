@@ -27,7 +27,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
      */
     private $entityManager;
 
-    public static function getKernelClass()
+    public static function getKernelClass(): string
     {
         return TestKernel::class;
     }
@@ -37,7 +37,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
         parent::setUp();
         static::bootKernel();
 
-        $container = static::$container;
+        $container = static::getContainer();
         $this->eventDispatcher = $container->get(EventDispatcherInterface::class);
         $this->entityManager = $container->get(EntityManagerInterface::class);
     }
@@ -47,7 +47,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
      */
     public function enables_filter_on_request(): void
     {
-        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MAIN_REQUEST);
         $this->eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
 
         static::assertTrue($this->entityManager->getFilters()->isEnabled(VisibilityColumnConsideringSQLFilter::NAME));
@@ -60,7 +60,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
     {
         $this->entityManager->getConfiguration()->addFilter(VisibilityColumnConsideringSQLFilter::NAME, VisibilityColumnConsideringSQLFilterMock::class);
 
-        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $masterRequestEvent = new RequestEvent(static::$kernel, new Request(), HttpKernelInterface::MAIN_REQUEST);
         $this->eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
 
         /** @var VisibilityColumnConsideringSQLFilterMock $filterMock */

@@ -22,7 +22,7 @@ class VisibilityColumnConsideringSQLFilterTest extends KernelTestCase
      */
     private $entityManager;
 
-    protected static function getKernelClass()
+    protected static function getKernelClass(): string
     {
         return TestKernel::class;
     }

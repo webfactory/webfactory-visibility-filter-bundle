@@ -11,7 +11,7 @@ use Webfactory\VisibilityFilterBundle\VisibilityFilterBundle;
 
 class TestKernel extends Kernel
 {
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return [new FrameworkBundle(), new DoctrineBundle(), new VisibilityFilterBundle()];
     }

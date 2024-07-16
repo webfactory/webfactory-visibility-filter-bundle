@@ -24,7 +24,7 @@ class VisibilityColumnRetrieverTest extends KernelTestCase
      */
     private $classMetadataFactory;
 
-    protected static function getKernelClass()
+    protected static function getKernelClass(): string
     {
         return TestKernel::class;
     }

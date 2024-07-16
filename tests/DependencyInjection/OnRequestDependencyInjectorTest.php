@@ -27,7 +27,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
      */
     private $entityManager;
 
-    public static function getKernelClass()
+    public static function getKernelClass(): string
     {
         return TestKernel::class;
     }

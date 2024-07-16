@@ -34,7 +34,7 @@ class VisibilityColumnRetrieverTest extends KernelTestCase
         parent::setUp();
         static::bootKernel();
 
-        $container = static::$container;
+        $container = static::getContainer();
         $this->visibilityColumnRetriever = $container->get(VisibilityColumnRetriever::class);
         $this->classMetadataFactory = $container->get(EntityManagerInterface::class)->getMetadataFactory();
     }

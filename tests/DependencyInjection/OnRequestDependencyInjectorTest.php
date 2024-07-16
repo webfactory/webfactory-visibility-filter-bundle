@@ -37,7 +37,7 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
         parent::setUp();
         static::bootKernel();
 
-        $container = static::$container;
+        $container = static::getContainer();
         $this->eventDispatcher = $container->get(EventDispatcherInterface::class);
         $this->entityManager = $container->get(EntityManagerInterface::class);
     }

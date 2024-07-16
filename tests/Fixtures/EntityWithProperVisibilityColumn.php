@@ -12,7 +12,6 @@ class EntityWithProperVisibilityColumn
 {
     /**
      * @VisibilityColumn()
-     *
      * @ORM\Column(type="string")
      *
      * @var string

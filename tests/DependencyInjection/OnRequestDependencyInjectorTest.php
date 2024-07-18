@@ -11,6 +11,8 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
+use Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnConsideringSQLFilter;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\Kernel\TestKernel;
 use Webfactory\VisibilityFilterBundle\Tests\Fixtures\VisibilityColumnConsideringSQLFilterMock;
@@ -66,5 +68,19 @@ class OnRequestDependencyInjectorTest extends KernelTestCase
         /** @var VisibilityColumnConsideringSQLFilterMock $filterMock */
         $filterMock = $this->entityManager->getFilters()->getFilter(VisibilityColumnConsideringSQLFilter::NAME);
         static::assertTrue($filterMock->haveDependenciesBeenInjected());
+    }
+
+    /**
+     * @test
+     */
+    public function calls_addParameters_on_strategy(): void
+    {
+        $strategyMock = $this->createMock(FilterStrategy::class);
+        static::$container->set(ValueInField::class, $strategyMock); // alias can't be overwritten at runtime – so we override the default filter strategy
+
+        $strategyMock->expects($this->once())->method('addParameters');
+
+        $masterRequestEvent = new GetResponseEvent(static::$kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
+        $this->eventDispatcher->dispatch($masterRequestEvent, KernelEvents::REQUEST);
     }
 }

@@ -18,6 +18,7 @@ class EntityWithOneToOneRelationship
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column()
      *
      * @var int

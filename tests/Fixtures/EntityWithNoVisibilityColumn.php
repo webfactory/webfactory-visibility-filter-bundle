@@ -11,6 +11,7 @@ class EntityWithNoVisibilityColumn
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\Column()
      *
      * @var int

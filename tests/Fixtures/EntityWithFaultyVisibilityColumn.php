@@ -21,6 +21,7 @@ class EntityWithFaultyVisibilityColumn
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column()
      *
      * @var int

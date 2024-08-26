@@ -21,6 +21,7 @@ class EntityWithProperVisibilityColumn
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column()
      *
      * @var int

@@ -1,5 +1,5 @@
 # Update this by running
-# curl https://gist.githubusercontent.com/mpdude/ca93a185bcbf56eb7e341632ad4f8263/raw/fix-cs-php.yml > .github/workflows/fix-cs-php.yml
+# curl https://gist.github.com/mpdude/ca93a185bcbf56eb7e341632ad4f8263/raw/fix-cs-php.yml > .github/workflows/fix-cs-php.yml
 
 on:
     push:
@@ -10,41 +10,22 @@ on:
 name: Coding Standards
 
 jobs:
-    open-pr-for-cs-violations:
+    fix-cs-issues:
         name: PHP-CS-Fixer
         runs-on: ubuntu-22.04
+        if: github.actor != 'dependabot[bot]'
         steps:
-
             -   name: Checkout code
                 uses: actions/checkout@v4
                 with:
                     ref: ${{ github.head_ref }}
 
             -   name: Run PHP-CS-Fixer
-                uses: docker://ghcr.io/webfactory/php-cs-fixer:3.62.0
-
-            -   name: Create PR for CS fixups
-                uses: peter-evans/create-pull-request@c7f493a8000b8aeb17a1332e326ba76b57cb83eb
-                id: create-pull-request
+                uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3.62.0-php8.3
                 with:
-                    token: ${{ secrets.GITHUB_TOKEN }}
-                    title: Fix coding standards in ${{ github.ref }}
-                    branch: php-cs-fixer/${{ github.ref }}
-                    assignees: ${{ github.actor }}
-                    labels: php-cs-fixer
-                    body: Please merge these changes into the ${{ github.ref }} branch to fix coding standard violations.
-                    commit-message: Apply php-cs-fixer changes as of ${{ github.sha }}
+                    args: "fix --show-progress=dots"
 
-            -   name: Leave a notice in the discussion when fixing code in a Pull Request
-                uses: docker://mpdude/comment-on-pr:v1.2.0
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                if: steps.create-pull-request.outputs.pr_number # only if PR was created in the previous step
-                continue-on-error: true # continue on failure - necessary when the current branch does not have a pending PR
+            -   name: Commit and push back changes
+                uses: stefanzweifel/git-auto-commit-action@v5
                 with:
-                    msg: |
-                        @${{ github.actor }} please apply the coding standard fixes from #${{ steps.create-pull-request.outputs.pr_number }}
-
-            -   name: Fail the workflow when necessary CS fixes were detected
-                run: echo "Failing workflow run because CS violations were detected." && exit 1
-                if: steps.create-pull-request.outputs.pr_number
+                    commit_message: "Fix CS with PHP-CS-Fixer"

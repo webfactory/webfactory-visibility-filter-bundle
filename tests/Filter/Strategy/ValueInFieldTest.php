@@ -3,6 +3,7 @@
 namespace Webfactory\VisibilityFilterBundle\Tests\Filter\Strategy;
 
 use PHPUnit\Framework\TestCase;
+use Webfactory\VisibilityFilterBundle\Filter\ParameterCollection;
 use Webfactory\VisibilityFilterBundle\Filter\Strategy\ValueInField;
 
 class ValueInFieldTest extends TestCase
@@ -14,7 +15,7 @@ class ValueInFieldTest extends TestCase
     {
         $valueInField = new ValueInField('y');
 
-        $sqlClause = $valueInField->getFilterSql('testAlias');
+        $sqlClause = $valueInField->getFilterSql('testAlias', $this->createMock(ParameterCollection::class));
 
         static::assertEquals('testAlias = "y"', $sqlClause);
     }
@@ -26,7 +27,7 @@ class ValueInFieldTest extends TestCase
     {
         $valueInField = new ValueInField(2);
 
-        $sqlClause = $valueInField->getFilterSql('testAlias');
+        $sqlClause = $valueInField->getFilterSql('testAlias', $this->createMock(ParameterCollection::class));
 
         static::assertEquals('testAlias = 2', $sqlClause);
     }
@@ -38,7 +39,7 @@ class ValueInFieldTest extends TestCase
     {
         $valueInField = new ValueInField(false);
 
-        $sqlClause = $valueInField->getFilterSql('testAlias');
+        $sqlClause = $valueInField->getFilterSql('testAlias', $this->createMock(ParameterCollection::class));
 
         static::assertEquals('testAlias = 0', $sqlClause);
     }
@@ -50,7 +51,7 @@ class ValueInFieldTest extends TestCase
     {
         $valueInField = new ValueInField(true);
 
-        $sqlClause = $valueInField->getFilterSql('testAlias');
+        $sqlClause = $valueInField->getFilterSql('testAlias', $this->createMock(ParameterCollection::class));
 
         static::assertEquals('testAlias = 1', $sqlClause);
     }

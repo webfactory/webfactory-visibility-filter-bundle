@@ -46,27 +46,20 @@ grade on a scale, based on which the visibility of the object will be determined
 **Currently, only entities that have a visibility column configured will be filtered at all.**
 
 All you need to configure on your entity is *which* of its fields will be the one with the visibility information.
-You can do that by Adding the `VisibilityColumn()` annotation to that field.
+You can do that by Adding the `VisibilityColumn` attribute to that field.
 
 ```php
 
 use Doctrine\ORM\Mapping as ORM;
-use Webfactory\VisibilityFilterBundle\Annotation\VisibilityColumn;
+use Webfactory\VisibilityFilterBundle\Attribute\VisibilityColumn;
 
-/**
- * @ORM\Entity()
- */
+ #[ORM\Entity()]
 class EntityWithVisibilityColumn
 {
     // ...
-    /**
-     * @VisibilityColumn()
-     *
-     * @ORM\Column(type="string")
-     *
-     * @var string
-     */
-    private $visibilityColumn;
+     #[ORM\Column(type: "string")]
+     #[VisibilityColumn]
+    private string $visibilityColumn;
     // ...
 }
 ```

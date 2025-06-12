@@ -40,7 +40,19 @@ final class VisibilityColumnRetriever
         $visibilityProperty = null;
 
         foreach ($classMetadata->getReflectionClass()->getProperties() as $property) {
+            if (PHP_MAJOR_VERSION >= 8) {
+                if (null !== $property->getAttributes(\Webfactory\VisibilityFilterBundle\Attribute\VisibilityColumn::class)) {
+                    $visibilityProperty = $property;
+                }
+            }
+
             if (null !== $this->annotationReader->getPropertyAnnotation($property, VisibilityColumn::class)) {
+                trigger_deprecation(
+                    'webfactory/visibility-filter-bundle',
+                    '1.5.0',
+                    'Configuring webfactory/visibility-filter-bundle with annotations is deprecated, use attributes instead.'
+                );
+
                 if (null !== $visibilityProperty) {
                     throw new RuntimeException('More than 1 visibility column configured for '.$classMetadata->getName().'. You must only configure 1 visibility column per entity.');
                 }

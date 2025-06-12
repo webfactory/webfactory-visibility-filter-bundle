@@ -13,7 +13,19 @@ use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
  *
  * @Annotation
  * @Target("PROPERTY")
+ *
+ * @deprecated, to be replaced by attribute-based configuration
  */
 final class VisibilityColumn
 {
+    public function __construct(array $parameters)
+    {
+        trigger_deprecation(
+            'webfactory/visibility-filter-bundle',
+            '1.5.0',
+            'The %s annotation has been deprecated, use the %s attribute instead.',
+            __CLASS__,
+            \Webfactory\VisibilityFilterBundle\Attribute\VisibilityColumn::class
+        );
+    }
 }

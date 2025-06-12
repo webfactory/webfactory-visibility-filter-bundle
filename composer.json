@@ -19,6 +19,7 @@
         "doctrine/orm": "^2.7.2",
         "symfony/config": "^5.4|^6.4",
         "symfony/dependency-injection": "^5.4|^6.4",
+        "symfony/deprecation-contracts": "^3.6.0",
         "symfony/event-dispatcher": "^5.4|^6.4",
         "symfony/http-kernel": "^5.4|^6.4"
     },

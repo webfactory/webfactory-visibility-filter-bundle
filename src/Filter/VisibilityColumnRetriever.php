@@ -41,7 +41,7 @@ final class VisibilityColumnRetriever
 
         foreach ($classMetadata->getReflectionClass()->getProperties() as $property) {
             if (\PHP_MAJOR_VERSION >= 8) {
-                if (null !== $property->getAttributes(\Webfactory\VisibilityFilterBundle\Attribute\VisibilityColumn::class)) {
+                if (0 < count($property->getAttributes(\Webfactory\VisibilityFilterBundle\Attribute\VisibilityColumn::class))) {
                     $visibilityProperty = $property;
                 }
             }

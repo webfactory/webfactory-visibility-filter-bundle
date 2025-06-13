@@ -7,8 +7,6 @@ services:
             - 'y'
 
     Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever:
-        arguments:
-            - '@Doctrine\Common\Annotations\Reader'
 
     Webfactory\VisibilityFilterBundle\DependencyInjection\OnRequestDependencyInjector:
         arguments:

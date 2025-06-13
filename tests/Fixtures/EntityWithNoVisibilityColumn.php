@@ -4,16 +4,15 @@ namespace Webfactory\VisibilityFilterBundle\Tests\Fixtures;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity()
- */
+#[ORM\Entity]
 class EntityWithNoVisibilityColumn
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column()
-     *
-     * @var int
-     */
-    public $id;
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    public int $id;
+
+    public function __construct(int $id)
+    {
+        $this->id = $id;
+    }
 }

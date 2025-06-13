@@ -13,7 +13,7 @@ class EntityWithManyToManyRelationship
     #[ORM\JoinTable(name: 'jointable')]
     #[ORM\JoinColumn(name: 'this', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'that', referencedColumnName: 'id')]
-    public Collection $relationship;
+    public array|Collection $relationship;
 
     #[ORM\Id]
     #[ORM\Column]

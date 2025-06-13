@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 class EntityWithOneToOneRelationship
 {
     // fetch="EAGER" prevents a proxy object being put in here, so this will be null when the related entity is not found
-    #[ORM\OneToOne(targetEntity: EntityWithNoVisibilityColumn::class, fetch: 'EAGER')]
-    public EntityWithProperVisibilityColumn $relationship;
+    #[ORM\OneToOne(targetEntity: EntityWithProperVisibilityColumn::class, fetch: 'EAGER')]
+    public ?EntityWithProperVisibilityColumn $relationship = null;
 
     #[ORM\Id]
     #[ORM\Column]

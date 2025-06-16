@@ -1,9 +1,8 @@
 # Upgrade notes for `webfactory/visibility-filter-bundle`
 
-## 1.6.0
+## 2.0.0
 
 * Annotation support has been dropped. Use the Atrtibute for configuration.
-* Add Symfony 7 compatibility.
 
 ## 1.5.0
 

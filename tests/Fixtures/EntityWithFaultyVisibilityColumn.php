@@ -3,27 +3,16 @@
 namespace Webfactory\VisibilityFilterBundle\Tests\Fixtures;
 
 use Doctrine\ORM\Mapping as ORM;
-use Webfactory\VisibilityFilterBundle\Annotation\VisibilityColumn;
+use Webfactory\VisibilityFilterBundle\Attribute\VisibilityColumn;
 
-/**
- * @ORM\Entity()
- */
+#[ORM\Entity]
 class EntityWithFaultyVisibilityColumn
 {
-    /**
-     * @VisibilityColumn()
-     *
-     * (No Doctrine Column Annotation)
-     *
-     * @var string
-     */
-    public $visibilityColumn;
+    // (No Doctrine Column Annotation)
+    #[VisibilityColumn]
+    public string $visibilityColumn;
 
-    /**
-     * @ORM\Id()
-     * @ORM\Column()
-     *
-     * @var int
-     */
-    public $id;
+    #[ORM\Id]
+    #[ORM\Column]
+    public int $id;
 }

@@ -4,25 +4,16 @@ namespace Webfactory\VisibilityFilterBundle\Tests\Fixtures;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity()
- */
+#[ORM\Entity]
 class EntityWithOneToOneRelationship
 {
-    /**
-     * @ORM\OneToOne(targetEntity="EntityWithProperVisibilityColumn", fetch="EAGER") fetch="EAGER" prevents a proxy object being put in here, so this will be null when the related entity is not found
-     *
-     * @var EntityWithProperVisibilityColumn
-     */
-    public $relationship;
+    // fetch="EAGER" prevents a proxy object being put in here, so this will be null when the related entity is not found
+    #[ORM\OneToOne(targetEntity: EntityWithProperVisibilityColumn::class, fetch: 'EAGER')]
+    public ?EntityWithProperVisibilityColumn $relationship = null;
 
-    /**
-     * @ORM\Id()
-     * @ORM\Column()
-     *
-     * @var int
-     */
-    public $id;
+    #[ORM\Id]
+    #[ORM\Column]
+    public int $id;
 
     public function __construct(int $id)
     {

@@ -5,7 +5,7 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         mappings:
             Test:
-                type: annotation
+                type: attribute
                 dir: '%kernel.project_dir%'
                 prefix: 'Webfactory\VisibilityFilterBundle\Tests\Fixtures'
         auto_generate_proxy_classes: true

@@ -7,6 +7,7 @@ use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Webfactory\VisibilityFilterBundle\Filter\SQLFilterAsParameterCollection;
 use Webfactory\VisibilityFilterBundle\Filter\Strategy\FilterStrategy;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnConsideringSQLFilter;
 use Webfactory\VisibilityFilterBundle\Filter\VisibilityColumnRetriever;
@@ -62,6 +63,6 @@ final class OnRequestDependencyInjector implements EventSubscriberInterface
         $visibilityFilter = $filterCollection->getFilter(VisibilityColumnConsideringSQLFilter::NAME);
 
         $visibilityFilter->injectDependencies($this->filterStrategy, $this->visibilityColumnRetriever);
-        $visibilityFilter->setParameter('visibility', $this->filterStrategy->getFilterSql(''));
+        $this->filterStrategy->addParameters(new SQLFilterAsParameterCollection($visibilityFilter));
     }
 }

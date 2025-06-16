@@ -2,6 +2,8 @@
 
 namespace Webfactory\VisibilityFilterBundle\Filter\Strategy;
 
+use Webfactory\VisibilityFilterBundle\Filter\ParameterCollection;
+
 /**
  * Filters queries so that only entries with a certain value in their visibility field (@see VisibilityColumn) will
  * be retrieved from the database.
@@ -21,7 +23,12 @@ final class ValueInField implements FilterStrategy
         $this->visibleValue = $visibleValue;
     }
 
-    public function getFilterSql(string $visibilityFieldAlias): string
+    public function addParameters(ParameterCollection $parameters): void
+    {
+        // not needed, as $this->visibleValue is immutable
+    }
+
+    public function getFilterSql(string $visibilityFieldAlias, ParameterCollection $parameters): string
     {
         return $visibilityFieldAlias.' = '.$this->getSqlLiteral($this->visibleValue);
     }
